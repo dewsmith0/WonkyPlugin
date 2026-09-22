@@ -1,5 +1,6 @@
 package io.github.dewsmith0.wonkyplugin.mixin;
 
+import io.github.dewsmith0.wonkyplugin.lua.WonkyAPI;
 import org.figuramc.figura.lua.FiguraAPIManager;
 import org.figuramc.figura.lua.FiguraLuaRuntime;
 import org.spongepowered.asm.mixin.Final;
@@ -21,8 +22,8 @@ public class FiguraAPIManagerMixin {
     public static Map<String, Function<FiguraLuaRuntime, Object>> API_GETTERS;
 
     static {
-        WHITELISTED_CLASSES.add(io.github.dewsmith0.wonkyplugin.lua.WonkyAPI.class);
+        WHITELISTED_CLASSES.add(WonkyAPI.class);
 
-        API_GETTERS.put("wonky", r -> r.owner.isHost ? new io.github.dewsmith0.wonkyplugin.lua.WonkyAPI() : null);
+        API_GETTERS.put("wonky", r -> r.owner.isHost ? new WonkyAPI(r) : null);
     }
 }

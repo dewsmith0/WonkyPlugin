@@ -4,5 +4,6 @@
     "figura.config.wonkyplugin.tooltip": "Heh, you could say the plugin's a bit wonky...",
 
     "figura.docs.globals.wonky": "The global instance of WonkyAPI",
-    "figura.docs.wonky": "Random wonky additions"
+    "figura.docs.wonky": "Random wonky additions",
+    "figura.docs.wonky.get_bumpscocity": "Gets the Narrator to rate the current bumpscocity"
 }
