@@ -8,7 +8,9 @@
     "FiguraAPIManagerMixin",
     "FiguraDocsManagerMixin",
     "FiguraGlobalsDocsMixin",
-    "FiguraNetAPIMixin"
+    "FiguraLuaPrinterMixin",
+    "FiguraNetAPIMixin",
+    "PermissionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
