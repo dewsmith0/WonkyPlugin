@@ -16,9 +16,6 @@
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "figura_api": [
-      "io.github.dewsmith0.wonkyplugin.WonkyPlugin"
-    ],
     "client": [
       "io.github.dewsmith0.wonkyplugin.WonkyPluginClient"
     ]
