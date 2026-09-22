@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "io.github.dewsmith0.wonkyplugin.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [],
+  "mixins": [
+    "FiguraAPIManagerMixin",
+    "FiguraDocsManagerMixin",
+    "FiguraGlobalsDocsMixin",
+    "FiguraNetAPIMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

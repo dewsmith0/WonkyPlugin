@@ -1,0 +1,8 @@
+{
+    "figura.config.allow_more_ports": "Allow more NetAPI ports",
+    "figura.config.allow_more_ports.tooltip": "Whether to allow the ports from 13114-13124 in NetAPI",
+    "figura.config.wonkyplugin.tooltip": "Heh, you could say the plugin's a bit wonky...",
+
+    "figura.docs.globals.wonky": "The global instance of WonkyAPI",
+    "figura.docs.wonky": "Random wonky additions"
+}
