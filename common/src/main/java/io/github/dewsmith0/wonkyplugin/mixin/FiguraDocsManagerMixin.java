@@ -23,5 +23,6 @@ public class FiguraDocsManagerMixin {
 
     static {
         GLOBAL_CHILDREN.put("wonky", List.of(WonkyAPI.class));
+        GLOBAL_CHILDREN.put("websocket", List.of(WebSocketAPI.class, WonkyWebSocket.class));
     }
 }

@@ -20,6 +20,9 @@ import java.util.TreeMap;
 @LuaTypeDoc(name = "WonkyAPI", value = "wonky")
 public class WonkyAPI {
     public final Avatar avatar;
+//    @LuaWhitelist
+//    public final WebSocketAPI ws = new WebSocketAPI(this);
+
     private static final Map<Integer, String> BUMPSCOCITY_MESSAGES = Map.of(
             0, "Dear me, where did all the bumpscocity go? Quite unnerving in here with all of it gone.",
             1, "Well I'm quite feeling the lack of bumpscocity in here. Only a single bumpscocit. Still, it'll have to do.",

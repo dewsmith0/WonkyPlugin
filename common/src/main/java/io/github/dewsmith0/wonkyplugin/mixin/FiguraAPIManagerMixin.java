@@ -1,6 +1,10 @@
 package io.github.dewsmith0.wonkyplugin.mixin;
 
+import io.github.dewsmith0.wonkyplugin.WonkyPlugin;
+import io.github.dewsmith0.wonkyplugin.lua.WebSocketAPI;
 import io.github.dewsmith0.wonkyplugin.lua.WonkyAPI;
+import io.github.dewsmith0.wonkyplugin.lua.WonkyDevAPI;
+import io.github.dewsmith0.wonkyplugin.lua.WonkyWebSocket;
 import org.figuramc.figura.lua.FiguraAPIManager;
 import org.figuramc.figura.lua.FiguraLuaRuntime;
 import org.spongepowered.asm.mixin.Final;
@@ -23,7 +27,13 @@ public class FiguraAPIManagerMixin {
 
     static {
         WHITELISTED_CLASSES.add(WonkyAPI.class);
-
+        WHITELISTED_CLASSES.add(WebSocketAPI.class);
+        WHITELISTED_CLASSES.add(WonkyWebSocket.class);
         API_GETTERS.put("wonky", r -> r.owner.isHost ? new WonkyAPI(r) : null);
+        API_GETTERS.put("websocket", r -> r.owner.isHost ? new WebSocketAPI(r) : null);
+        if (WonkyPlugin.DEV_MODE) {
+            WHITELISTED_CLASSES.add(WonkyDevAPI.class);
+            API_GETTERS.put("wonky_dev", r -> r.owner.isHost ? new WonkyDevAPI(r) : null);
+        }
     }
 }

@@ -9,4 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class FiguraGlobalsDocsMixin {
     @LuaFieldDoc("globals.wonky")
     public WonkyAPI wonky;
+
+    @LuaFieldDoc("globals.websocket")
+    public WebSocketAPI websocket;
 }
