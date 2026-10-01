@@ -8,6 +8,8 @@ import org.figuramc.figura.lua.docs.LuaMethodDoc;
 import org.figuramc.figura.lua.docs.LuaMethodOverload;
 import org.figuramc.figura.lua.docs.LuaTypeDoc;
 import org.luaj.vm2.LuaError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.http.WebSocket;
 import java.util.concurrent.CompletionStage;
@@ -21,13 +23,15 @@ public class WonkyWebSocket {
     private volatile WebSocket ws;
     private final StringBuilder textBuffer = new StringBuilder();
     private final ConcurrentLinkedQueue<String> incoming = new ConcurrentLinkedQueue<>();
+    private final String uri;
     private volatile boolean closed = false;
     private volatile int closeCode = -1;
     private volatile String closeReason = "";
     private volatile Throwable errorObject = null;
-
-    WonkyWebSocket(Avatar owner) {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WonkyWebSocket.class);
+    WonkyWebSocket(Avatar owner, String uri) {
         this.owner = owner;
+        this.uri = uri;
         ((AvatarExtensions) owner).wonky$getOpenWebSockets().add(this);
     }
 
@@ -37,6 +41,7 @@ public class WonkyWebSocket {
             textBuffer.append(data);
             if (last) {
                 incoming.add(textBuffer.toString());
+                callDataEvent(textBuffer.toString());
                 textBuffer.setLength(0);
             }
             webSocket.request(1);
@@ -48,6 +53,7 @@ public class WonkyWebSocket {
             closed = true;
             closeCode = statusCode;
             closeReason = reason == null ? "" : reason;
+            callCloseEvent();
             return null;
         }
 
@@ -55,6 +61,8 @@ public class WonkyWebSocket {
         public void onError(WebSocket webSocket, Throwable error) {
             closed = true;
             errorObject = error;
+            callCloseEvent();
+            LOGGER.error(error.getMessage());
         }
     };
 
@@ -155,6 +163,11 @@ public class WonkyWebSocket {
         return closeReason;
     }
 
+    @LuaWhitelist
+    @LuaMethodDoc(value = "websocket.get_uri")
+    public String getUri() {
+        return uri;
+    }
     public void forceClose() {
         closed = true;
         if (ws != null) {
@@ -167,5 +180,12 @@ public class WonkyWebSocket {
     @Override
     public String toString() {
         return "WebSocket(closed=%s)".formatted(closed);
+    }
+
+    private synchronized void callDataEvent(CharSequence data) {
+        owner.run("WEBSOCKET_DATA", owner.tick, this, data);
+    }
+    private synchronized void callCloseEvent() {
+        owner.run("WEBSOCKET_CLOSED", owner.tick, this, hasError(), closeReason, closeCode);
     }
 }

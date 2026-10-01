@@ -6,6 +6,7 @@
   "client": [],
   "mixins": [
     "AvatarMixin",
+    "EventsAPIMixin",
     "FiguraAPIManagerMixin",
     "FiguraDocsManagerMixin",
     "FiguraGlobalsDocsMixin",

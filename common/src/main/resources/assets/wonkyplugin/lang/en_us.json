@@ -19,7 +19,10 @@
     "figura.docs.websocket.has_error": "Returns true if this socket was closed due to an error",
     "figura.docs.websocket.get_close_code": "Returns the numerical close code for this socket, or -1 if it isn't closed",
     "figura.docs.websocket.get_close_reason": "Returns the textual close reason for this socket, or the empty string if it isn't closed",
+    "figura.docs.websocket.get_uri": "Returns the socket's URI\nUseful for checking what socket an event belongs to",
     "figura.docs.websocket.get_open_sockets": "Returns a table containing all sockets that haven't explicitly been closed",
+    "figura.docs.events.websocket_data": "This event runs when a WebSocket receives data\nThe first parameter is the socket itself\nThe second parameter is the data received",
+    "figura.docs.events.websocket_closed": "This event runs when a WebSocket closes\nThe first parameter is the socket itself\nThe second parameter is true if it was closed due to an error\nThe third parameter is the textual close reason\nThe fourth parameter is the numerical close code",
     "wonkyplugin.permissions.value.print_json": "Allow printing JSON",
     "wonkyplugin.permissions.value.print_json.tooltip": "Whether or not the player can print arbitrary JSON text.",
     "figura.badges.no_permissions.print_json": "Printing JSON"

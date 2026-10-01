@@ -47,12 +47,12 @@ public class WebSocketAPI {
         WonkyPlugin.LOGGER.info("[WebSocketAPI] Connecting to {}", uri);
         FiguraFuture<WonkyWebSocket> future = new FiguraFuture<>();
         try {
-            WonkyWebSocket wrapper = new WonkyWebSocket(owner);
             String uriForValidation = uri;
             if (uriForValidation.regionMatches(true, 0, "http://", 0, 7))
                 uriForValidation = "ws://" + uriForValidation.substring(7);
             else if (uriForValidation.regionMatches(true, 0, "https://", 0, 8))
                 uriForValidation = "wss://" + uriForValidation.substring(8);
+            WonkyWebSocket wrapper = new WonkyWebSocket(owner, uriForValidation);
 
             httpClient.newWebSocketBuilder()
                     .buildAsync(URI.create(uri), wrapper.listener)
