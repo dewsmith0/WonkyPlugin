@@ -87,12 +87,26 @@ public class WonkyAPI {
             Pattern pattern = Pattern.compile(expression);
             Matcher matcher = pattern.matcher(text);
             LuaTable ret = new LuaTable();
+            LuaTable matches = new LuaTable();
+            LuaTable groups = new LuaTable();
+            LuaTable names = new LuaTable();
             int i = 1;
             while (matcher.find()) {
+                for (int j = 0; j <= matcher.groupCount(); j++) {
+                    groups.set(j, matcher.group(j));
+                }
                 String current = matcher.group();
-                ret.set(i, current);
+                matches.set(i, current);
                 i++;
             }
+            for (Map.Entry<String, Integer> named: matcher.namedGroups().entrySet()) {
+                //WonkyPlugin.LOGGER.info("try match {} = {} ?= {}", named.getKey(), named.getValue(), groups.get(named.getValue()).checkinteger());
+                WonkyPlugin.LOGGER.info("add match {} = {} = {}", named.getKey(), named.getValue(), groups.get(named.getValue()));
+                names.set(named.getKey(), groups.get(named.getValue()).checkstring());
+            }
+            ret.set("matches", matches);
+            ret.set("groups", groups);
+            ret.set("names", names);
             return ret;
 
         } catch (PatternSyntaxException e) {
