@@ -1,0 +1,33 @@
+  {
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "mixins": [
+    "wonkyplugin.mixins.json"
+  ],
+  "authors": [
+    "${mod_author}"
+  ],
+  "contributors": [
+    {"name":"Byteb3rry_jam: WebSocket code"},
+    {"name":"KingRoboLizard: Made the mod I used as a base"},
+    {"name":"NikoSolstice: I steal stuff from his code when I'm confused"}
+  ] ,
+  "contact": {
+    "sources": "https://github.com/dewsmith0/WonkyPlugin"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.dewsmith0.wonkyplugin.loaders.FabricEntrypoint"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": "*",
+    "figura": "*"
+  }
+}

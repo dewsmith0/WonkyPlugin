@@ -1,0 +1,25 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "${mod_license}"
+clientSideOnly = true
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+description = '''${mod_description}'''
+authors = "${mod_author}"
+logoFile= "assets/wonkyplugin/icon.png"
+
+[[dependencies.${mod_id}]]
+modId = "neoforge"
+type = "required"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = "required"
+
+[[mixins]]
+config = "wonkyplugin.mixins.json"

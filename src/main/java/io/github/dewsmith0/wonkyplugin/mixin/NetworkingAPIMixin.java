@@ -27,11 +27,11 @@ public class NetworkingAPIMixin {
                     NetworkingAPI.RestrictionLevel level = NetworkingAPI.RestrictionLevel.getById(Configs.NETWORKING_RESTRICTION.value);
                     WonkyPlugin.LOGGER.debug("Allowed connection to port {}", url.getPort());
                     cir.setReturnValue(switch (level) {
-                        case NetworkingAPI.RestrictionLevel.WHITELIST ->
+                        case WHITELIST ->
                                 filters.stream().anyMatch(f -> f.matches(url.getHost()));
-                        case NetworkingAPI.RestrictionLevel.BLACKLIST ->
+                        case BLACKLIST ->
                                 filters.stream().noneMatch(f -> f.matches(url.getHost()));
-                        case NetworkingAPI.RestrictionLevel.NONE -> true;
+                        case NONE -> true;
                     });
                 }
             } catch (MalformedURLException e) {

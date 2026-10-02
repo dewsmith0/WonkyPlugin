@@ -68,7 +68,14 @@ public class WonkyAPI {
                     WonkyPlugin.LOGGER.info("bump {}", e.getKey());
                 }
             }
-            return matches.getLast();
+            String out;
+            //? 1.20.1 {
+            /*//noinspection SequencedCollectionMethodCanBeUsed,ReassignedVariable
+            out = matches.get(matches.size() - 1);
+            *///?} else {
+            out = matches.getLast();
+            //?}
+            return out;
         } catch (IllegalAccessException | ClassNotFoundException | NoSuchFieldException e) {
             throw new LuaError("Failed to read bumpscocity: %s".formatted(e));
         }
@@ -89,7 +96,6 @@ public class WonkyAPI {
             LuaTable ret = new LuaTable();
             LuaTable matches = new LuaTable();
             LuaTable groups = new LuaTable();
-            LuaTable names = new LuaTable();
             int i = 1;
             while (matcher.find()) {
                 for (int j = 0; j <= matcher.groupCount(); j++) {
@@ -99,14 +105,19 @@ public class WonkyAPI {
                 matches.set(i, current);
                 i++;
             }
+            //? <=1.20.4 {
+            // ret.set("names", "Warning: Named groups are not supported on this version!");
+            //?} else {
+            LuaTable names = new LuaTable();
             for (Map.Entry<String, Integer> named: matcher.namedGroups().entrySet()) {
                 //WonkyPlugin.LOGGER.info("try match {} = {} ?= {}", named.getKey(), named.getValue(), groups.get(named.getValue()).checkinteger());
                 WonkyPlugin.LOGGER.info("add match {} = {} = {}", named.getKey(), named.getValue(), groups.get(named.getValue()));
                 names.set(named.getKey(), groups.get(named.getValue()).checkstring());
             }
+            ret.set("names", names);
+            //?}
             ret.set("matches", matches);
             ret.set("groups", groups);
-            ret.set("names", names);
             return ret;
 
         } catch (PatternSyntaxException e) {

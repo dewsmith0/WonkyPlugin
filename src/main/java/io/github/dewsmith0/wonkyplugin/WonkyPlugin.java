@@ -13,4 +13,7 @@ public class WonkyPlugin {
     static {
         LOGGER.info("Wonking it up...");
     }
+    public static void initialize() {
+
+    }
 }

@@ -10,10 +10,10 @@ public class Config {
     public static ConfigType.Category CATEGORY = category("wonkyplugin");
     private static ConfigType.Category category(String name) {
         return new ConfigType.Category(name) {{
-            this.name = Component.literal("\uE051")
+           this.name = Component.literal("\uE051")
                     .withStyle(Style.EMPTY.withFont(ResourceLocation.fromNamespaceAndPath("figura", "emoji_portrait")))
                     .append(this.name.copy().withStyle(Style.EMPTY.withFont(Style.DEFAULT_FONT).withColor(WonkyPlugin.COLOR.getRGB())));
-       }};
+        }};
     }
     public static ConfigType.BoolConfig ALLOW_MORE_PORTS;
     static {
