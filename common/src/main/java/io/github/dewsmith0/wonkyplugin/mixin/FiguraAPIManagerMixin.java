@@ -1,10 +1,7 @@
 package io.github.dewsmith0.wonkyplugin.mixin;
 
 import io.github.dewsmith0.wonkyplugin.WonkyPlugin;
-import io.github.dewsmith0.wonkyplugin.lua.WebSocketAPI;
-import io.github.dewsmith0.wonkyplugin.lua.WonkyAPI;
-import io.github.dewsmith0.wonkyplugin.lua.WonkyDevAPI;
-import io.github.dewsmith0.wonkyplugin.lua.WonkyWebSocket;
+import io.github.dewsmith0.wonkyplugin.lua.*;
 import org.figuramc.figura.lua.FiguraAPIManager;
 import org.figuramc.figura.lua.FiguraLuaRuntime;
 import org.spongepowered.asm.mixin.Final;
