@@ -23,6 +23,8 @@
     "figura.docs.websocket.get_open_sockets": "Returns a table containing all sockets that haven't explicitly been closed",
     "figura.docs.events.websocket_data": "This event runs when a WebSocket receives data\nThe first parameter is the socket itself\nThe second parameter is the data received",
     "figura.docs.events.websocket_closed": "This event runs when a WebSocket closes\nThe first parameter is the socket itself\nThe second parameter is true if it was closed due to an error\nThe third parameter is the textual close reason\nThe fourth parameter is the numerical close code",
+    "figura.docs.wonky.match_regex": "Returns all matches of a string against a regular expression\nUse Java embedded flag syntax to set flags, for example \"(?i)\" for case insensitive matching\nDon't forget to escape backslash metacharacters (\\d -> \\\\d)",
+    "figura.docs.wonky.replace_regex": "Replaces all matches of a string against a regex with another string\nUse Java embedded flag syntax to set flags, for example \"(?i)\" for case insensitive matching\nDon't forget to escape backslash metacharacters (\\d -> \\\\d)",
     "wonkyplugin.permissions.value.print_json": "Allow printing JSON",
     "wonkyplugin.permissions.value.print_json.tooltip": "Whether or not the player can print arbitrary JSON text.",
     "figura.badges.no_permissions.print_json": "Printing JSON"

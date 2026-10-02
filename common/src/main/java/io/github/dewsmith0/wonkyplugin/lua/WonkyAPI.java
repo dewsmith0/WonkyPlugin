@@ -75,11 +75,11 @@ public class WonkyAPI {
     }
 
     @LuaWhitelist
-    @LuaMethodDoc(value = "wonky.find_regex", overloads = {
+    @LuaMethodDoc(value = "wonky.match_regex", overloads = {
             @LuaMethodOverload(
                     argumentNames = {"expression", "text"},
                     argumentTypes = {String.class, String.class},
-                    returnType = String.class
+                    returnType = LuaTable.class
             )})
 
     public LuaTable matchRegex(@LuaNotNil String expression, @LuaNotNil String text) {
