@@ -4,6 +4,7 @@ import io.github.dewsmith0.wonkyplugin.WonkyPlugin;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import org.figuramc.figura.config.ConfigManager;
 import org.figuramc.figura.config.ConfigType;
 
 public class Config {
@@ -17,74 +18,10 @@ public class Config {
     }
     public static ConfigType.BoolConfig ALLOW_MORE_PORTS;
     static {
-        ALLOW_MORE_PORTS = new ConfigType.BoolConfig("allow_more_ports", CATEGORY, true);
+        ALLOW_MORE_PORTS = new ConfigType.BoolConfig("allow_more_ports", CATEGORY, false);
     }
 
-    public static void init() {}
-        //  ConfigManager.REGISTRY.add(ALLOW_MORE_PORTS);
+    public static void init() {
+        ConfigManager.REGISTRY.add(ALLOW_MORE_PORTS);
+    }
 }
-
-//
-//
-//    // totally not taken from sillyplugin because it kept resetting for some reason
-//    public static class WonkySetting /* extends ConfigType<T> */ {
-//        public String name;
-//
-//        public WonkySetting(String name) {
-//            //super(name, defaultValue);
-//            this.name = name;
-//        }
-//
-//        public Boolean getBool() {
-//            throw new RuntimeException("Cannot get a setting of type " + this.getClass().getSimpleName() + " as a boolean!");
-//        }
-//
-//        public void setBool(Boolean val) {
-//            throw new RuntimeException("Cannot set a setting of type " + this.getClass().getSimpleName() + " as a boolean!");
-//        }
-//
-//        public String getString() {
-//            throw new RuntimeException("Cannot get a setting of type " + this.getClass().getSimpleName() + " as a string!");
-//        }
-//
-//        public void setString(String val) {
-//            throw new RuntimeException("Cannot set a setting of type " + this.getClass().getSimpleName() + " as a string!");
-//        }
-//        @Override
-//        public T parseValue(String newVal) {
-//            throw new RuntimeException("Cannot parse setting of type " + this.getClass().getSimpleName() + " from string!");
-//        }
-//    }
-//
-//    public static class WonkyBooleanSetting extends WonkySetting/*<Boolean>  implements ConfigType.SerializableConfig */ {
-//        private final ConfigType.BoolConfig figConf;
-//
-//        public WonkyBooleanSetting(String name, Boolean defaultValue) {
-//            super(name);
-//            figConf = new ConfigType.BoolConfig(name, CATEGORY, defaultValue);
-//        }
-//
-//        @Override
-//        public Boolean getBool() {
-//            return figConf.value;
-//        }
-//
-//        @Override
-//        public void setBool(Boolean val) {
-//            figConf.setValue(String.valueOf(val));
-//        }
-//        @Override
-//        public JsonElement serialize() {
-//            Gson gson = new Gson();
-//            return gson.toJsonTree(this.getBool());
-//        }
-//
-//        @Override
-//        public void deserialize(JsonElement element) {
-//                this.setBool(element.getAsBoolean());
-//        }
-//        @Override
-//        public Boolean parseValue(String newVal) {
-//            return Boolean.valueOf(newVal);
-//        }
-//        }

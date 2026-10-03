@@ -1,6 +1,5 @@
 package io.github.dewsmith0.wonkyplugin.mixin;
 
-import io.github.dewsmith0.wonkyplugin.lua.WonkyAPI;
 import io.github.dewsmith0.wonkyplugin.lua.*;
 import org.figuramc.figura.lua.docs.FiguraDocsManager;
 import org.spongepowered.asm.mixin.Final;
