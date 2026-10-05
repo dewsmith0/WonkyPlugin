@@ -34,7 +34,7 @@ allprojects {
 
         // yes i stole this from silly :devious:
         // 0.1.6 isnt on the official maven yet
-        // maven("https://penguinencounter.github.io/mvn/snapshots")
+        maven("https://penguinencounter.github.io/mvn/snapshots")
         maven("https://jitpack.io")
 
         // svc

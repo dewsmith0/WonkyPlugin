@@ -45,12 +45,6 @@ public class WonkyAPI {
     }
 
     @LuaWhitelist
-    @LuaMethodDoc("wonky.test")
-    public String test() {
-        return "yoo it works";
-    }
-
-    @LuaWhitelist
     @LuaMethodDoc("wonky.get_bumpscocity")
     public String getBumpscocity() {
         // welcome to hell
@@ -76,8 +70,10 @@ public class WonkyAPI {
             out = matches.getLast();
             //?}
             return out;
-        } catch (IllegalAccessException | ClassNotFoundException | NoSuchFieldException e) {
-            throw new LuaError("Failed to read bumpscocity: %s".formatted(e));
+        } catch (ClassNotFoundException e) {
+            return "SillyPlugin doesn't seem to be installed!";
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            return "Failed to read bumpscocity: %s".formatted(e);
         }
     }
 

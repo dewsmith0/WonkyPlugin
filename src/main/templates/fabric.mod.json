@@ -1,4 +1,4 @@
-  {
+{
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${mod_version}",
@@ -7,6 +7,7 @@
   "mixins": [
     "wonkyplugin.mixins.json"
   ],
+  "icon": "assets/wonkyplugin/icon.png",
   "authors": [
     "${mod_author}"
   ],
@@ -29,5 +30,8 @@
     "fabric": "*",
     "minecraft": "*",
     "figura": "*"
+  },
+  "recommends": {
+    "sillyplugin": "*"
   }
 }

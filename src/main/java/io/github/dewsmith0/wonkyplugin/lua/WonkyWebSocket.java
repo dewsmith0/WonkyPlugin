@@ -16,6 +16,7 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 // "inspired" from https://github.com/Figurean-Creations/Bytura/blob/1.21.4/common/src/main/java/org/figuramc/figura/lua/api/net/FiguraWebSocket.java
+// used with permission (byte literally told me to use her code as "inspiration")
 @LuaWhitelist
 @LuaTypeDoc(name = "WebSocket", value = "websocket.instance")
 public class WonkyWebSocket {

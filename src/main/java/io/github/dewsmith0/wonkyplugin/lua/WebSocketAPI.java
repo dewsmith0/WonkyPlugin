@@ -2,6 +2,8 @@ package io.github.dewsmith0.wonkyplugin.lua;
 
 import io.github.dewsmith0.wonkyplugin.WonkyPlugin;
 import io.github.dewsmith0.wonkyplugin.duck.AvatarExtensions;
+import io.github.dewsmith0.wonkyplugin.helper.NetLogger;
+import net.minecraft.network.chat.Component;
 import org.figuramc.figura.avatar.Avatar;
 import org.figuramc.figura.lua.FiguraLuaRuntime;
 import org.figuramc.figura.lua.LuaNotNil;
@@ -16,6 +18,8 @@ import org.luaj.vm2.LuaTable;
 import java.net.URI;
 import java.net.http.HttpClient;
 
+// "inspired" from https://github.com/Figurean-Creations/Bytura/blob/1.21.4/common/src/main/java/org/figuramc/figura/lua/api/net/FiguraWebSocket.java
+// used with permission (byte literally told me to use her code as "inspiration")
 @LuaWhitelist
 @LuaTypeDoc(name = "WebSocketAPI", value = "websocket")
 public class WebSocketAPI {
@@ -29,7 +33,6 @@ public class WebSocketAPI {
         this.owner = runtime.owner;
         this.httpClient = HttpClient.newHttpClient();
         this.net = new NetworkingAPI(owner);
-        WonkyPlugin.LOGGER.warn("DEBUG: WebSocketAPi init, net = {}", net);
     }
 
     @LuaWhitelist
@@ -40,11 +43,11 @@ public class WebSocketAPI {
         } catch (RuntimeException e) {
             // i am NOT doing reflection for this
             if (e.getClass().getSimpleName().equals("LinkNotAllowedException")) {
-                WonkyPlugin.LOGGER.warn("[WebSocketAPI] Tried to open a socket to not allowed link {}", uri);
+                NetLogger.error("websocket", owner.entityName, Component.literal("Tried to open a socket to not allowed link %s".formatted(uri)));
                 throw new LuaError("Networking whitelist/blacklist does not allow access to link: %s".formatted(uri));
             } else throw e;
         }
-        WonkyPlugin.LOGGER.info("[WebSocketAPI] Connecting to {}", uri);
+        NetLogger.log("websocket", owner.entityName, Component.literal("Connecting to %s".formatted(uri)));
         FiguraFuture<WonkyWebSocket> future = new FiguraFuture<>();
         try {
             String uriForValidation = uri;
@@ -58,7 +61,7 @@ public class WebSocketAPI {
                     .buildAsync(URI.create(uri), wrapper.listener)
                     .whenCompleteAsync((webSocket, error) -> {
                         if (error != null) {
-                            WonkyPlugin.LOGGER.error("Failed to connect to {}: {}", uri, error.getMessage());
+                            NetLogger.error("websocket", owner.entityName, Component.literal("Failed to connect to %s: %s".formatted(uri, error.getMessage())));
                             future.error(error);
                         } else {
                             wrapper.attach(webSocket);
@@ -67,6 +70,7 @@ public class WebSocketAPI {
                     });
         } catch (Exception e) {
             WonkyPlugin.LOGGER.error("Failed to open socket to {}: {}", uri, e.getMessage());
+
         }
         return future;
     }
